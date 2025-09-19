@@ -57,35 +57,60 @@ import java.util.*;
  */
 
 //SAMPLE USAGE: A+
-/** The magic number is 2. Shh! Don't tell anyone
- *  Enter a guess:
- *  10
- *  Way off!
- *  Enter a guess:
- *  3
- *  Very close!
- *  Enter a guess:
- *  2
- *  It took you 3 guesses.
+/**
+ * The magic number is 2. Shh! Don't tell anyone
+ * Enter a guess:
+ * 10
+ * Way off!
+ * Enter a guess:
+ * 3
+ * Very close!
+ * Enter a guess:
+ * 2
+ * It took you 3 guesses.
  */
-
-
 
 public class App {
     public static void main(String[] args) throws Exception {
-        //DO NOT TOUCH THE THREE LINES BELOW
+        // DO NOT TOUCH THE THREE LINES BELOW
         int magicNumber = getMeARandomNumber();
-        System.out.println("The magic number is "+ magicNumber + ". Shh! Don't tell anyone");
+        System.out.println("The magic number is " + magicNumber + ". Shh! Don't tell anyone");
         Scanner reader = new Scanner(System.in);
 
-        //WRITE YOUR CODE IN THE SPACE BELOW
+        int count = 0;
 
-        
+        while (true) {
+            System.out.println("Enter a guess: ");
+            int number = Integer.valueOf(reader.nextLine());
+
+            if (number > 10 || number < 0) {
+                System.out.println("Invalid, enter between 0-10");
+                continue;
+            }
+
+            if (number != magicNumber && number <= 10 || number >= 0) {
+                count++;
+            }
+
+            if (number <= (magicNumber + 2) && number >= (magicNumber - 2)) {
+                System.out.println("Very close");
+            }
+
+            if (number >= (magicNumber + 5) && number <= (magicNumber - 5)) {
+                System.out.println("Very far");
+            }
+
+            if (number == magicNumber) {
+                break;
+
+            }
+        }
+        System.out.println("Number of tries: " + count);
+
     }
 
-
-    //Do not modify!!!
-    public static int getMeARandomNumber(){
+    // Do not modify!!!
+    public static int getMeARandomNumber() {
         Random random = new Random();
         return random.nextInt(10) + 1;
     }
